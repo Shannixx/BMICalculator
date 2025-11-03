@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BMICalculator.Views.ResultPage"
+    BackgroundColor="#F8FAFC">
+
+    <VerticalStackLayout Spacing="20" Padding="20, 30, 20, 20">
+
+        <!-- BMI Score Frame -->
+        <Frame BackgroundColor="#FFFFFF" CornerRadius="18" Padding="22" HasShadow="True">
+            <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Label Text="BMI Score" FontSize="Small" TextColor="#64748B" HorizontalOptions="Center" />
+
+                <Label Text="{Binding BmiResult}" 
+                       FontSize="60" 
+                       FontAttributes="Bold" 
+                       HorizontalOptions="Center">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding BmiCategory}" Value="Normal">
+                            <Setter Property="TextColor" Value="#10B981" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding BmiCategory}" Value="Underweight">
+                            <Setter Property="TextColor" Value="#2563EB" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding BmiCategory}" Value="Overweight">
+                            <Setter Property="TextColor" Value="#F59E0B" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding BmiCategory}" Value="Obese">
+                            <Setter Property="TextColor" Value="#EF4444" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+
+                <Label Text="{Binding BmiCategory}" 
+                       FontSize="22" 
+                       FontAttributes="Bold" 
+                       HorizontalOptions="Center">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding BmiCategory}" Value="Normal">
+                            <Setter Property="TextColor" Value="#10B981" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding BmiCategory}" Value="Underweight">
+                            <Setter Property="TextColor" Value="#2563EB" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding BmiCategory}" Value="Overweight">
+                            <Setter Property="TextColor" Value="#F59E0B" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding BmiCategory}" Value="Obese">
+                            <Setter Property="TextColor" Value="#EF4444" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Your Details -->
+        <Frame BackgroundColor="#FFFFFF" CornerRadius="18" Padding="20" HasShadow="True">
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Your Details"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       TextColor="#2563EB"
+                       HorizontalOptions="Center" />
+
+                <Grid ColumnDefinitions="Auto, *"
+                      RowDefinitions="Auto, Auto, Auto, Auto"
+                      ColumnSpacing="15"
+                      RowSpacing="8">
+
+                    <Label Grid.Row="0" Grid.Column="0" Text="Gender:" TextColor="#64748B" FontSize="Small" />
+                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding Gender}" TextColor="#0F172A" FontAttributes="Bold" FontSize="Small" HorizontalTextAlignment="End" />
+
+                    <Label Grid.Row="1" Grid.Column="0" Text="Age:" TextColor="#64748B" FontSize="Small" />
+                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding Age}" TextColor="#0F172A" FontAttributes="Bold" FontSize="Small" HorizontalTextAlignment="End" />
+
+                    <Label Grid.Row="2" Grid.Column="0" Text="Height:" TextColor="#64748B" FontSize="Small" />
+                    <Label Grid.Row="2" Grid.Column="1" Text="{Binding HeightCm, StringFormat='{0} cm'}" TextColor="#0F172A" FontAttributes="Bold" FontSize="Small" HorizontalTextAlignment="End" />
+
+                    <Label Grid.Row="3" Grid.Column="0" Text="Weight:" TextColor="#64748B" FontSize="Small" />
+                    <Label Grid.Row="3" Grid.Column="1" Text="{Binding Weight, StringFormat='{0} kg'}" TextColor="#0F172A" FontAttributes="Bold" FontSize="Small" HorizontalTextAlignment="End" />
+                </Grid>
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Recalculate Button -->
+        <Button Text="Recalculate" 
+                Clicked="OnRecalculateClicked"
+                CornerRadius="12"
+                FontSize="Medium"
+                FontAttributes="Bold"
+                HeightRequest="48"
+                BackgroundColor="#E2E8F0"
+                TextColor="#0F172A"
+                Margin="0,10,0,0" />
+    </VerticalStackLayout>
+</ContentPage>
